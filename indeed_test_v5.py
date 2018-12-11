@@ -42,12 +42,12 @@ extract_company(soup)
 #print(extract_company(soup))
 
 # Building the dataframe
-columns = ['location', 'job_title', 'company_name']
-job_postings = [(extract_location(soup)), (extract_job_title(soup)), (extract_company(soup))]
-df = pd.DataFrame(columns = columns)
-num = (len(df) + 1) 
-df.loc[num] = data
+columns = {'location': locations, 'job_title': jobs, 'company_name': companies}
+df = pd.DataFrame.from_dict(columns, orient='index')
+df = df.transpose()
+
+
 print(df)
-df
+
 
 df.to_csv('indeed_job_postings.csv')
